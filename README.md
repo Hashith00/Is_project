@@ -14,7 +14,6 @@ This project is a Java-based information security system with separate client an
 
 - `Information_secuity_project_client/` — Java client application (Maven project)
 - `Information_security_server/` — Java server application (Maven project)
-- `.DS_Store` — System file (can be ignored)
 - `README.md` — Project documentation
 
 ## Setup Instructions
