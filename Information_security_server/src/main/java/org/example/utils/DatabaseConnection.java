@@ -117,6 +117,38 @@ public class DatabaseConnection {
         return null;
     }
 
+    public static User getUserByRefreshToken(String refreshToken) {
+        String sql = "SELECT u.id, u.name, u.email, u.password FROM users u " +
+                    "JOIN refresh_tokens rt ON u.id = rt.user_id " +
+                    "WHERE rt.token = ? AND rt.expires_at > NOW()";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getConnection();
+            if (connection == null) return null;
+
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, refreshToken);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                return new User(id, name, email, password);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(connection, statement, resultSet);
+        }
+        return null;
+    }
+
     public static void saveRefreshToken(int userId, String token) {
         // Set expiration to 7 days from now
         java.sql.Timestamp expiresAt = new java.sql.Timestamp(System.currentTimeMillis() + 7L * 24 * 60 * 60 * 1000);

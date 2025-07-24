@@ -58,6 +58,24 @@ public class ClientHandler implements Runnable {
             out.println(json);
         }
     }
+    public void sendRefreshToken(String msg, String refreshToken) {
+        if (out != null) {
+            // Generate new access token from refresh token
+            String newAccessToken = TokenUtil.generateNewAccessTokenFromRefreshToken(refreshToken);
+            if (newAccessToken != null) {
+                String json = String.format("{\"time_stamp\":\"%s\",\"message\":\"%s\",\"accessToken\":\"%s\"}",
+                    DateTimeFormatter.ISO_INSTANT.format(Instant.now()), 
+                    msg.replace("\"", "\\\""), 
+                    newAccessToken.replace("\"", "\\\""));
+                out.println(json);
+            } else {
+                String json = String.format("{\"time_stamp\":\"%s\",\"message\":\"%s\"}",
+                    DateTimeFormatter.ISO_INSTANT.format(Instant.now()), 
+                    "Failed to generate new access token. Please login again.".replace("\"", "\\\""));
+                out.println(json);
+            }
+        }
+    }
 
     @Override
     public void run() {
@@ -74,7 +92,7 @@ public class ClientHandler implements Runnable {
                         Instant msgTime = Instant.parse(timeStampStr);
                         Instant now = Instant.now();
                         if (Duration.between(msgTime, now).toHours() >= 1) {
-                            logger.warn("Received expired message from client " + name + ". Dropping connection.");
+                            logger.warn("Received expired message from client {}. Dropping connection.", name);
                             if (out != null) {
                                 sendMessage("Message too old. Connection will be closed.");
                             }
@@ -82,7 +100,7 @@ public class ClientHandler implements Runnable {
                         }
                         // If not expired, process as normal
                         String message = node.get("message").asText();
-                        logger.info(name + ": " + message);
+                        logger.info("{}: {}", name, message);
                         sendMessage(message);
                         continue;
                     }
@@ -90,7 +108,7 @@ public class ClientHandler implements Runnable {
                         String accessToken = node.get("accessToken").asText();
                         String message = node.get("message").asText();
                         if (TokenUtil.validateAccessToken(accessToken)) {
-                            logger.info(name + ": " + message);
+                            logger.info("{}: {}", name, message);
                             sendMessage(message);
                         } else {
                             if (out != null) {
@@ -99,21 +117,32 @@ public class ClientHandler implements Runnable {
                         }
                         continue;
                     }
+                    if (node.has("refreshToken")) {
+                        String refreshToken = node.get("refreshToken").asText();
+                        if (TokenUtil.validateRefreshToken(refreshToken)) {
+                            logger.info("{}: Refresh token is valid", name);
+                            sendRefreshToken("Refresh token is valid. Renewing access token...", refreshToken);
+                        } else {
+                            logger.warn("{}: Refresh token is invalid", name);
+                            // sendRefreshToken("Refresh token is invalid. Please login again.", refreshToken);
+                        }
+                    }
                 } catch (Exception e) {
                     // Not a JSON message, fall through
                 }
                 // Fallback: print raw message and send in JSON format
-                logger.info(name + ": " + msg);
+                Instant msgTime = Instant.now();
+                logger.info("{}: {}", name, msg);
                 sendMessage(msg);
             }
         } catch (IOException e) {
-            logger.info("Client " + name + " disconnected.");
+            logger.info("Client {} disconnected.", name);
         } finally {
             try {
                 clients.remove(name);
                 socket.close();
             } catch (IOException e) {
-                logger.error("Error closing client socket.", e);
+                e.printStackTrace();
             }
         }
     }
