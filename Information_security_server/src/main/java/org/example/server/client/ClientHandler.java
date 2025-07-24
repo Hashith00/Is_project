@@ -1,6 +1,5 @@
 package org.example.server.client;
 import org.example.models.User;
-import org.example.server.auth.AuthService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
