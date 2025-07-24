@@ -2,6 +2,7 @@ package org.example.server.client;
 import org.example.models.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.server.auth.AuthService;
 import org.example.utils.TokenUtil;
 
 import java.io.*;
