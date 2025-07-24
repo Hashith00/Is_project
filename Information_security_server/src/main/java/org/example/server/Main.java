@@ -9,8 +9,11 @@ import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         try {
             // Load the keystore
@@ -32,7 +35,7 @@ public class Main {
             SSLServerSocketFactory ssf = sslContext.getServerSocketFactory();
             SSLServerSocket serverSocket = (SSLServerSocket) ssf.createServerSocket(ServerConfig.PORT);
 
-            System.out.println("TLS Chat server started on port " + ServerConfig.PORT);
+            logger.info("TLS Chat server started on port " + ServerConfig.PORT);
 
             Map<String, ClientHandler> clients = new HashMap<>();
 
@@ -40,19 +43,19 @@ public class Main {
                 //noinspection resource
                 Scanner scanner = new Scanner(System.in);
                 while (true) {
-                    System.out.println("\nConnected clients: " + clients.keySet());
-                    System.out.print("Enter client name to chat with: ");
+                    logger.info("\nConnected clients: " + clients.keySet());
+                    logger.info("Enter client name to chat with: ");
                     String targetClient = scanner.nextLine().trim();
 
                     ClientHandler target = clients.get(targetClient);
                     if (target == null) {
-                        System.out.println("Client not found.");
+                        logger.info("Client not found.");
                         continue;
                     }
 
-                    System.out.println("Chatting with " + targetClient + " (type 'exit' to stop):");
+                    logger.info("Chatting with " + targetClient + " (type 'exit' to stop):");
                     while (true) {
-                        System.out.print("You: ");
+                        logger.info("You: ");
                         String msg = scanner.nextLine();
                         if (msg.equalsIgnoreCase("exit")) break;
                         target.sendMessage("Server: " + msg);
@@ -63,12 +66,12 @@ public class Main {
             while (true) {
                 SSLSocket clientSocket = (SSLSocket) serverSocket.accept();
                 clientSocket.addHandshakeCompletedListener(event -> {
-                    System.out.println("\n=== [SSL HANDSHAKE COMPLETED - SERVER SIDE] ===");
-                    System.out.println("Peer Host     : " + event.getSession().getPeerHost());
-                    System.out.println("Protocol      : " + event.getSession().getProtocol());
-                    System.out.println("Cipher Suite  : " + event.getCipherSuite());
-                    System.out.println("Session ID    : " + bytesToHex(event.getSession().getId()));
-                    System.out.println("==============================================\n");
+                    logger.info("\n=== [SSL HANDSHAKE COMPLETED - SERVER SIDE] ===");
+                    logger.info("Peer Host     : " + event.getSession().getPeerHost());
+                    logger.info("Protocol      : " + event.getSession().getProtocol());
+                    logger.info("Cipher Suite  : " + event.getCipherSuite());
+                    logger.info("Session ID    : " + bytesToHex(event.getSession().getId()));
+                    logger.info("==============================================\n");
                 });
 
                 clientSocket.startHandshake();
@@ -78,19 +81,19 @@ public class Main {
                         ClientHandler handler = new ClientHandler(clientSocket, privateKey, clients);
                         if (handler.authenticate()) {
                             clients.put(handler.getName(), handler);
-                            System.out.println(handler.getName() + " connected via TLS.");
+                            logger.info(handler.getName() + " connected via TLS.");
                             new Thread(handler).start();
                         } else {
-                            System.out.println("Authentication failed for client.");
+                            logger.info("Authentication failed for client.");
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        logger.error("Error handling client connection.", e);
                     }
                 }).start();
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error starting server.", e);
         }
     }
 

@@ -3,9 +3,13 @@ package org.example.ssl;
 import javax.net.ssl.*;
 import java.security.SecureRandom;
 import java.security.PublicKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SSLUtils {
+    private static final Logger logger = LoggerFactory.getLogger(SSLUtils.class);
     public static SSLContext createTrustAllSSLContext() throws Exception {
+        logger.info("Creating trust all SSL context");
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, new TrustManager[]{
                 new X509TrustManager() {

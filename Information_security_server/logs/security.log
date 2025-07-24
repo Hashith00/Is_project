@@ -1,0 +1,69 @@
+2025-07-24 10:38:12.275 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted email: QI8+4KHTfOYs8TEw3F4k0J8gtQnwMMj3BJPyj8ydMe08YIaZHEXMLQwWbhKjE5xVFu5v4bh/ZbLLJ160AVibgLvmOZeietnQL4YmuOOeSMr6Tu+uON9TdsKaTVcO2j6Q+j7B+Xo/mlxY325OH8YAsDWpg2QTxYtkjwsrxsn4pnipqLOcy5gBc9JEpwoFDG2VpD4/PR1pHtJcm43PkFRhpt5hCaR8hiKm0EiuVeCL6CGHO1rQKv6I6/cvKhg8AvWBV1SeRxAtMgwTZ9naUv9jzxeNumr87cl8CdxiEq7Xyh5fd9l5PIaxX4PFV2B+lsnVxGtzLZNXxaZztpy1ERM7ig==
+2025-07-24 10:38:12.281 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for email: 408F3EE0A1D37CE62CF13130DC5E24D09F20B509F030C8F70493F28FCC9D31ED3C6086991C45CC2D0C166E12A3139C5516EE6FE1B87F65B2CB275EB401589B80BBE63997A27AD9D02F8626B8E39E48CAFA4EEFAE38DF5376C29A4D570EDA3E90FA3EC1F97A3F9A5C58DF6E4E1FC600B035A9836413C58B648F0B2BC6C9F8A678A9A8B39CCB980173D244A70A050C6D95A43E3F3D1D691ED25C9B8DCF905461A6DE6109A47C8622A6D048AE55E08BE821873B5AD02AFE88EBF72F2A183C02F58157549E47102D320C1367D9DA52FF63CF178DBA6AFCEDC97C09DC6212AED7CA1E5F77D9793C86B15F83C557607E96C9D5C46B732D9357C5A673B69CB511133B8A
+2025-07-24 10:38:12.302 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Decrypted email: namal@example.com
+2025-07-24 10:38:56.337 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted password: ef8lwX6dqFJiAizBF/7K5RE/Ui9x6xgjY+DOm61LLTgsp5b/wMH75+uJXU1b9GKPv+cGXk0PGqoGIlMosNV/XrZrvtAOkZ7AX/yAcxvrDn0CK6bX5uHw7zRF+pYSc5UFtMaHXIKVtJc5bQ3K/a3S1sFk0fqEKYrttNeAOLpRWaYkh+7vLBudOzkhCJzuJ614ehJps5efaLUpEqTIT9uK5sUUvikzJTcz6m6RVp914BaXsGX3C6knQDetQDxiHlI1m0U8qY/Hi4VGbKL/kSxe6lK5TTgxST0ecP7YQm0i2DoKbGgDCBQKq9o9Q0ZIGZvhkPQevFSQOHOIjAVaBDEWbg==
+2025-07-24 10:38:56.342 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for password: 79FF25C17E9DA85262022CC117FECAE5113F522F71EB182363E0CE9BAD4B2D382CA796FFC0C1FBE7EB895D4D5BF4628FBFE7065E4D0F1AAA06225328B0D57F5EB66BBED00E919EC05FFC80731BEB0E7D022BA6D7E6E1F0EF3445FA9612739505B4C6875C8295B497396D0DCAFDADD2D6C164D1FA84298AEDB4D78038BA5159A62487EEEF2C1B9D3B3921089CEE27AD787A1269B3979F68B52912A4C84FDB8AE6C514BE2933253733EA6E91569F75E01697B065F70BA9274037AD403C621E52359B453CA98FC78B85466CA2FF912C5EEA52B94D3831493D1E70FED8426D22D83A0A6C680308140AABDA3D434648199BE190F41EBC54903873888C055A0431166E
+2025-07-24 10:38:56.355 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Decrypted password: namal
+2025-07-24 10:38:56.531 [Thread-1] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:44:02.549 [Thread-2] WARN  org.example.utills.TokenUtil - Access token validation failed: JWT expired at 2025-07-24T05:09:11Z. Current time: 2025-07-24T05:14:02Z, a difference of 291549 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-07-24 10:44:02.569 [Thread-2] INFO  org.example.utills.TokenUtil - Refresh token validation successful for user: namal
+2025-07-24 10:44:02.569 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: Refresh token is valid
+2025-07-24 10:44:02.569 [Thread-2] INFO  org.example.utills.TokenUtil - Attempting to generate new access token from refresh token
+2025-07-24 10:44:02.577 [Thread-2] INFO  org.example.utills.TokenUtil - Successfully generated new access token for user: namal
+2025-07-24 10:44:02.578 [Thread-2] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:44:02.578 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: {"refreshToken":"079f977a-00fc-4207-8001-1a88065e74dca576f88b-0485-4830-97ef-caac895882e1"}
+2025-07-24 10:44:07.865 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:44:07.865 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: helo server
+2025-07-24 10:44:09.831 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:44:09.831 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello
+2025-07-24 10:44:11.670 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:44:11.671 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello
+2025-07-24 10:44:13.571 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:44:13.571 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: helo
+2025-07-24 10:44:15.755 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:44:15.756 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello
+2025-07-24 10:44:18.033 [Thread-2] WARN  org.example.utills.TokenUtil - Access token validation failed: JWT expired at 2025-07-24T05:14:17Z. Current time: 2025-07-24T05:14:18Z, a difference of 1033 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-07-24 10:44:18.046 [Thread-2] INFO  org.example.utills.TokenUtil - Refresh token validation successful for user: namal
+2025-07-24 10:44:18.046 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: Refresh token is valid
+2025-07-24 10:44:18.046 [Thread-2] INFO  org.example.utills.TokenUtil - Attempting to generate new access token from refresh token
+2025-07-24 10:44:18.056 [Thread-2] INFO  org.example.utills.TokenUtil - Successfully generated new access token for user: namal
+2025-07-24 10:44:18.056 [Thread-2] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:44:18.057 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: {"refreshToken":"079f977a-00fc-4207-8001-1a88065e74dca576f88b-0485-4830-97ef-caac895882e1"}
+2025-07-24 10:47:53.319 [Thread-2] WARN  org.example.utills.TokenUtil - Access token validation failed: JWT expired at 2025-07-24T05:14:33Z. Current time: 2025-07-24T05:17:53Z, a difference of 200319 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-07-24 10:47:53.321 [Thread-2] WARN  org.example.utills.TokenUtil - Access token validation failed: JWT expired at 2025-07-24T05:14:33Z. Current time: 2025-07-24T05:17:53Z, a difference of 200321 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-07-24 10:47:53.333 [Thread-2] INFO  org.example.utills.TokenUtil - Refresh token validation successful for user: namal
+2025-07-24 10:47:53.333 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: Refresh token is valid
+2025-07-24 10:47:53.333 [Thread-2] INFO  org.example.utills.TokenUtil - Attempting to generate new access token from refresh token
+2025-07-24 10:47:53.339 [Thread-2] INFO  org.example.utills.TokenUtil - Successfully generated new access token for user: namal
+2025-07-24 10:47:53.339 [Thread-2] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:47:53.339 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: {"refreshToken":"079f977a-00fc-4207-8001-1a88065e74dca576f88b-0485-4830-97ef-caac895882e1"}
+2025-07-24 10:48:10.947 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted email: RCY8JT2u1mX/NzzIE1/Da257OCVyk0o2DPdGesbwZQmn9xhXsCvSC+JQl/g7gw69psM3NgkzykPlwVPb892/4a9nc4jBxAxBdbZCuyIp91M63raFgM9OwsLmIQSNG/FM5YMPRaszAWW+KMXFRo1p9ui3TQ58N9wbAggjyHWAJ7sOVEyp4EqrouRQ+GhKhZNmN3RfmRq8ObSMZJeB302RcIGrf/IwhCFvADZWx0dGVVdznKkQVLaQERITVAZ5DOaREeKSVdFah1k0a1Su82HeL12TQ/YsRk9BSRjZUc0dHY+k0CGL4ptxgAJH01lAmECEVUoLB798QysiQ3Hq1CF9gw==
+2025-07-24 10:48:10.949 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for email: 44263C253DAED665FF373CC8135FC36B6E7B382572934A360CF7467AC6F06509A7F71857B02BD20BE25097F83B830EBDA6C337360933CA43E5C153DBF3DDBFE1AF677388C1C40C4175B642BB2229F7533ADEB68580CF4EC2C2E621048D1BF14CE5830F45AB330165BE28C5C5468D69F6E8B74D0E7C37DC1B020823C8758027BB0E544CA9E04AABA2E450F8684A85936637745F991ABC39B48C649781DF4D917081AB7FF23084216F003656C747465557739CA91054B6901112135406790CE69111E29255D15A8759346B54AEF361DE2F5D9343F62C464F414918D951CD1D1D8FA4D0218BE29B71800247D35940984084554A0B07BF7C432B224371EAD4217D83
+2025-07-24 10:48:10.951 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Decrypted email: 
+2025-07-24 10:48:19.690 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted password: caX5X/N+G0I24CgY2D2eureqz+4yV9jmc8b7+9dCw4v49uCfJ9+YV3EooUl6Qy8Fc/fxz+PwrjsfWo9a9a+Erb65xlPLJFb7dLvy8UXiDxhpa9qRi/pij8lZQGobdsQeNuj6BhCPRRqhcwPbpiz3D4IMHbxE7CK8KRAjrI02/5LOd8qxTdIYovJLPTQqhflRcHQfZqaYtm8KxiZ8D3fDV/93ISinBmoxlo2jpzFUQIZZDexToDViyFTzMosF/z1GCSIvBcRuxF13P9ei+9Uwb4W6s++SV3Ia0cND37quR04MoqscoBvJYyI+RyNbipd2bhoSE0rvDrmA7vPFIW9exA==
+2025-07-24 10:48:19.693 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for password: 71A5F95FF37E1B4236E02818D83D9EBAB7AACFEE3257D8E673C6FBFBD742C38BF8F6E09F27DF98577128A1497A432F0573F7F1CFE3F0AE3B1F5A8F5AF5AF84ADBEB9C653CB2456FB74BBF2F145E20F18696BDA918BFA628FC959406A1B76C41E36E8FA06108F451AA17303DBA62CF70F820C1DBC44EC22BC291023AC8D36FF92CE77CAB14DD218A2F24B3D342A85F95170741F66A698B66F0AC6267C0F77C357FF772128A7066A31968DA3A731544086590DEC53A03562C854F3328B05FF3D4609222F05C46EC45D773FD7A2FBD5306F85BAB3EF9257721AD1C343DFBAAE474E0CA2AB1CA01BC963223E47235B8A97766E1A12134AEF0EB980EEF3C5216F5EC4
+2025-07-24 10:48:19.699 [Thread-3] DEBUG o.example.server.auth.RsaDecryptor - Decrypted password: namal@example.com
+2025-07-24 10:48:48.668 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted email: B8SLyL2CaaJAWlZcK7TZ1WyLb80Tv31gvKBM6hy/myLIAMnyQP+j4TtpCyYLUvGv9ZvRmdcfaFTrHdWVYIyfYFzdx49NmBSzscwrhXpq5XGFJP9sAHgWE3D7RdkOm42Om6JP77apQwG3kMl0pXC9l90GGUALw94h+NWxnQjfswWErLJDHdVsST47gD0KxTpxdq1cPdKnEQ9VKVM9yR3EyhmEpro0T5LGWjUi9bhRYL7p0AZ/DjvEeKuxQMMG+hS5L7Mirm23E0PH5EmkW9jz5TWiU76A/59DY+/wA7jUZKYacNC1dYh2nACR/QJcktvHnDdeWQsX6FkAwgB3OtuQtA==
+2025-07-24 10:48:48.672 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for email: 07C48BC8BD8269A2405A565C2BB4D9D56C8B6FCD13BF7D60BCA04CEA1CBF9B22C800C9F240FFA3E13B690B260B52F1AFF59BD199D71F6854EB1DD595608C9F605CDDC78F4D9814B3B1CC2B857A6AE5718524FF6C0078161370FB45D90E9B8D8E9BA24FEFB6A94301B790C974A570BD97DD0619400BC3DE21F8D5B19D08DFB30584ACB2431DD56C493E3B803D0AC53A7176AD5C3DD2A7110F5529533DC91DC4CA1984A6BA344F92C65A3522F5B85160BEE9D0067F0E3BC478ABB140C306FA14B92FB322AE6DB71343C7E449A45BD8F3E535A253BE80FF9F4363EFF003B8D464A61A70D0B57588769C0091FD025C92DBC79C375E590B17E85900C200773ADB90B4
+2025-07-24 10:48:48.685 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Decrypted email: namal@example.com
+2025-07-24 10:48:50.579 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Received encrypted password: YiPC6pJx2ycY3FGzsw1SWqfc6ninDyCqbvA77x9XV8MAj+ZShFwgYza2ukenq04ZbB9TdT6Z7GDmtQGUhIKfx2AY4u+nTC+kazKlM8gIsJ53xiO855DkDXEvRuNHjOyVuMmj+YKKqHqHYbRNqCDj5o183gD5bG+5yFbeWoh38ss6YyPK00X+pn2sEx7N/LCkh66XsF4SCec9NtQLuZyNKYcHjtJMzwk6aJgqY7OEWgXsXiPEhUO4Np6TiyGNf3/fbpLx46LJJnaCUuHeWiBItYHh3amEMKU+PcGLlYFQdhOY9s2ddPhTdvSQQ/PtA10chtjdxZn3ovb/mZeZeI4d6Q==
+2025-07-24 10:48:50.581 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Base64-decoded bytes for password: 6223C2EA9271DB2718DC51B3B30D525AA7DCEA78A70F20AA6EF03BEF1F5757C3008FE652845C206336B6BA47A7AB4E196C1F53753E99EC60E6B5019484829FC76018E2EFA74C2FA46B32A533C808B09E77C623BCE790E40D712F46E3478CEC95B8C9A3F9828AA87A8761B44DA820E3E68D7CDE00F96C6FB9C856DE5A8877F2CB3A6323CAD345FEA67DAC131ECDFCB0A487AE97B05E1209E73D36D40BB99C8D2987078ED24CCF093A68982A63B3845A05EC5E23C48543B8369E938B218D7F7FDF6E92F1E3A2C926768252E1DE5A2048B581E1DDA98430A53E3DC18B958150761398F6CD9D74F85376F49043F3ED035D1C86D8DDC599F7A2F6FF999799788E1DE9
+2025-07-24 10:48:50.593 [Thread-1] DEBUG o.example.server.auth.RsaDecryptor - Decrypted password: namal
+2025-07-24 10:48:50.711 [Thread-1] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:48:52.789 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:48:52.789 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: 
+2025-07-24 10:48:54.151 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:48:54.151 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: 
+2025-07-24 10:48:57.837 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:48:57.838 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello server
+2025-07-24 10:49:02.621 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:49:02.622 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello server
+2025-07-24 10:49:06.102 [Thread-2] WARN  org.example.utills.TokenUtil - Access token validation failed: JWT expired at 2025-07-24T05:19:05Z. Current time: 2025-07-24T05:19:06Z, a difference of 1100 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-07-24 10:49:06.118 [Thread-2] INFO  org.example.utills.TokenUtil - Refresh token validation successful for user: namal
+2025-07-24 10:49:06.118 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: Refresh token is valid
+2025-07-24 10:49:06.118 [Thread-2] INFO  org.example.utills.TokenUtil - Attempting to generate new access token from refresh token
+2025-07-24 10:49:06.130 [Thread-2] INFO  org.example.utills.TokenUtil - Successfully generated new access token for user: namal
+2025-07-24 10:49:06.130 [Thread-2] INFO  org.example.utills.TokenUtil - Generating access token for user: namal
+2025-07-24 10:49:06.132 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: {"refreshToken":"24384b6f-ebf1-4b94-b7f3-597cd56d38ddd1b01e28-7e1f-4780-894a-7e1972098420"}
+2025-07-24 10:49:10.208 [Thread-2] INFO  org.example.utills.TokenUtil - Access token validation successful
+2025-07-24 10:49:10.209 [Thread-2] INFO  o.e.server.client.ClientHandler - namal: hello server

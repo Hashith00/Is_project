@@ -1,0 +1,55 @@
+2025-07-24 10:32:31.224 [main] INFO  org.example.server.Main - TLS Chat server started on port 8443
+2025-07-24 10:32:31.226 [Thread-0] INFO  org.example.server.Main - Connected clients: []
+2025-07-24 10:32:31.226 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:35:55.811 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - 
+=== [SSL HANDSHAKE COMPLETED - SERVER SIDE] ===
+2025-07-24 10:35:55.812 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Peer Host     : 127.0.0.1
+2025-07-24 10:35:55.812 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Protocol      : TLSv1.3
+2025-07-24 10:35:55.812 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Cipher Suite  : TLS_AES_256_GCM_SHA384
+2025-07-24 10:35:55.813 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Session ID    : 027E5CA1D827E744BE2B2961C42F2D8CA669BC7AA11ECF6A49969BE54026E43B
+2025-07-24 10:35:55.813 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - ==============================================
+
+2025-07-24 10:38:56.659 [Thread-1] INFO  org.example.server.Main - namal connected via TLS.
+2025-07-24 10:42:07.833 [Thread-0] WARN  org.example.server.Main - Client not found.
+2025-07-24 10:42:07.835 [Thread-0] INFO  org.example.server.Main - Connected clients: [namal]
+2025-07-24 10:42:07.835 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:42:12.497 [Thread-0] WARN  org.example.server.Main - Client not found.
+2025-07-24 10:42:12.497 [Thread-0] INFO  org.example.server.Main - Connected clients: [namal]
+2025-07-24 10:42:12.497 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:42:25.536 [Thread-0] WARN  org.example.server.Main - Client not found.
+2025-07-24 10:42:25.536 [Thread-0] INFO  org.example.server.Main - Connected clients: [namal]
+2025-07-24 10:42:25.536 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:43:39.174 [Thread-0] INFO  org.example.server.Main - Chatting with namal (type 'exit' to stop):
+2025-07-24 10:43:39.176 [Thread-0] INFO  org.example.server.Main - [2025-07-24T05:13:39.176237Z] You: 
+2025-07-24 10:43:48.588 [Thread-0] INFO  org.example.server.Main - [2025-07-24T05:13:48.588832Z] You: 
+2025-07-24 10:48:04.082 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - 
+=== [SSL HANDSHAKE COMPLETED - SERVER SIDE] ===
+2025-07-24 10:48:04.082 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Peer Host     : 127.0.0.1
+2025-07-24 10:48:04.082 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Protocol      : TLSv1.3
+2025-07-24 10:48:04.083 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Cipher Suite  : TLS_AES_256_GCM_SHA384
+2025-07-24 10:48:04.083 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Session ID    : B61BFAED92378E4079B867658BA22504106ED4589DE328475984C7446AE49E2C
+2025-07-24 10:48:04.083 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - ==============================================
+
+2025-07-24 10:48:19.708 [Thread-3] WARN  org.example.server.Main - Authentication failed for client.
+2025-07-24 10:48:37.984 [main] INFO  org.example.server.Main - TLS Chat server started on port 8443
+2025-07-24 10:48:37.988 [Thread-0] INFO  org.example.server.Main - Connected clients: []
+2025-07-24 10:48:37.988 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:48:39.529 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - 
+=== [SSL HANDSHAKE COMPLETED - SERVER SIDE] ===
+2025-07-24 10:48:39.529 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Peer Host     : 127.0.0.1
+2025-07-24 10:48:39.529 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Protocol      : TLSv1.3
+2025-07-24 10:48:39.529 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Cipher Suite  : TLS_AES_256_GCM_SHA384
+2025-07-24 10:48:39.531 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - Session ID    : 009AF8BDBA1CEFE05CFBE515B15DD46C24D76CBADCF175EBD32A0FB0F547F258
+2025-07-24 10:48:39.531 [HandshakeCompletedNotify-Thread] INFO  org.example.server.Main - ==============================================
+
+2025-07-24 10:48:50.833 [Thread-1] INFO  org.example.server.Main - namal connected via TLS.
+2025-07-24 10:49:21.299 [Thread-0] WARN  org.example.server.Main - Client not found.
+2025-07-24 10:49:21.300 [Thread-0] INFO  org.example.server.Main - Connected clients: [namal]
+2025-07-24 10:49:21.301 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:49:24.581 [Thread-0] WARN  org.example.server.Main - Client not found.
+2025-07-24 10:49:24.582 [Thread-0] INFO  org.example.server.Main - Connected clients: [namal]
+2025-07-24 10:49:24.582 [Thread-0] INFO  org.example.server.Main - Enter client name to chat with: 
+2025-07-24 10:49:26.467 [Thread-0] INFO  org.example.server.Main - Chatting with namal (type 'exit' to stop):
+2025-07-24 10:49:26.468 [Thread-0] INFO  org.example.server.Main - [2025-07-24T05:19:26.467947Z] You: 
+2025-07-24 10:49:30.492 [Thread-0] INFO  org.example.server.Main - [2025-07-24T05:19:30.492410Z] You: 
+2025-07-24 10:49:34.613 [Thread-0] INFO  org.example.server.Main - [2025-07-24T05:19:34.613415Z] You: 

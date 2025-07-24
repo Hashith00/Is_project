@@ -12,9 +12,11 @@ import org.example.model.AuthToken;
 import org.json.JSONObject;
 import java.time.Instant;
 import java.time.Duration;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         try {
             // Setup SSL context
@@ -23,18 +25,18 @@ public class Main {
             SSLSocket socket = (SSLSocket) socketFactory.createSocket(ClientConfig.SERVER_IP, ClientConfig.SERVER_PORT);
 
             socket.addHandshakeCompletedListener(event -> {
-                System.out.println("\n=== [SSL HANDSHAKE COMPLETED - CLIENT SIDE] ===");
-                System.out.println("Connected to  : " + event.getSession().getPeerHost());
-                System.out.println("Protocol      : " + event.getSession().getProtocol());
-                System.out.println("Cipher Suite  : " + event.getCipherSuite());
-                System.out.println("Session ID    : " + bytesToHex(event.getSession().getId()));
+                logger.info("\n=== [SSL HANDSHAKE COMPLETED - CLIENT SIDE] ===");
+                logger.info("Connected to  : " + event.getSession().getPeerHost());
+                logger.info("Protocol      : " + event.getSession().getProtocol());
+                logger.info("Cipher Suite  : " + event.getCipherSuite());
+                logger.info("Session ID    : " + bytesToHex(event.getSession().getId()));
                 try {
                     java.security.PublicKey serverPublicKey = org.example.ssl.SSLUtils.extractServerPublicKey((SSLSocket) event.getSocket());
-                    System.out.println("Server Public Key: " + serverPublicKey);
+                    logger.info("Server Public Key: " + serverPublicKey);
                 } catch (Exception e) {
-                    System.out.println("Could not verify peer: " + e.getMessage());
+                    logger.error("Could not verify peer: " + e.getMessage());
                 }
-                System.out.println("===============================================\n");
+                logger.info("===============================================\n");
             });
 
             socket.startHandshake();
@@ -70,23 +72,23 @@ public class Main {
                                 Instant now = Instant.now();
                                 Duration duration = Duration.between(messageTime, now);
                                 if (duration.toHours() >= 1) {
-                                    System.out.println("Received message older than 1 hour. Closing connection.");
+                                    logger.warn("Received message older than 1 hour. Closing connection.");
                                     try { socket.close(); } catch (Exception ignore) {}
                                     System.exit(0);
                                 } else {
-                                    System.out.println(messageContent);
+                                    logger.info(messageContent);
                                 }
                             } else {
                                 // Not a standard message, print as is
-                                System.out.println(msg);
+                                logger.info(msg);
                             }
                         } catch (Exception e) {
                             // Not a JSON message, print as is
-                            System.out.println(msg);
+                            logger.info(msg);
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("Disconnected from server.");
+                    logger.info("Disconnected from server.");
                 }
             });
             messageThread.start();
@@ -103,7 +105,7 @@ public class Main {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error starting client.", e);
         }
     }
 

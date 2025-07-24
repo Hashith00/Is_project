@@ -12,8 +12,11 @@ import java.util.Map;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientHandler implements Runnable {
+    private static final Logger logger = LoggerFactory.getLogger(ClientHandler.class);
     private final Socket socket;
     private final PrivateKey privateKey;
     private final Map<String, ClientHandler> clients;
@@ -43,8 +46,7 @@ public class ClientHandler implements Runnable {
             this.name = user.getName();
             return true;
         } catch (IOException e) {
-            System.err.println("Error during authentication.");
-            e.printStackTrace();
+            logger.error("Error during authentication.", e);
             return false;
         }
     }
@@ -72,7 +74,7 @@ public class ClientHandler implements Runnable {
                         Instant msgTime = Instant.parse(timeStampStr);
                         Instant now = Instant.now();
                         if (Duration.between(msgTime, now).toHours() >= 1) {
-                            System.out.println("Received expired message from client " + name + ". Dropping connection.");
+                            logger.warn("Received expired message from client " + name + ". Dropping connection.");
                             if (out != null) {
                                 sendMessage("Message too old. Connection will be closed.");
                             }
@@ -80,7 +82,7 @@ public class ClientHandler implements Runnable {
                         }
                         // If not expired, process as normal
                         String message = node.get("message").asText();
-                        System.out.println(name + ": " + message);
+                        logger.info(name + ": " + message);
                         sendMessage(message);
                         continue;
                     }
@@ -88,7 +90,7 @@ public class ClientHandler implements Runnable {
                         String accessToken = node.get("accessToken").asText();
                         String message = node.get("message").asText();
                         if (TokenUtil.validateAccessToken(accessToken)) {
-                            System.out.println(name + ": " + message);
+                            logger.info(name + ": " + message);
                             sendMessage(message);
                         } else {
                             if (out != null) {
@@ -101,17 +103,17 @@ public class ClientHandler implements Runnable {
                     // Not a JSON message, fall through
                 }
                 // Fallback: print raw message and send in JSON format
-                System.out.println(name + ": " + msg);
+                logger.info(name + ": " + msg);
                 sendMessage(msg);
             }
         } catch (IOException e) {
-            System.out.println("Client " + name + " disconnected.");
+            logger.info("Client " + name + " disconnected.");
         } finally {
             try {
                 clients.remove(name);
                 socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Error closing client socket.", e);
             }
         }
     }

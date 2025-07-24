@@ -9,8 +9,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.PrivateKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AuthService {
+    private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
     public static User authenticate(BufferedReader in, PrintWriter out, PrivateKey privateKey) {
         try {
             out.println("Enter email:");
@@ -38,12 +41,10 @@ public class AuthService {
             out.println("Welcome " + user.getName() + "! You are authenticated.");
             return user;
         } catch (IOException e) {
-            System.err.println("Error during authentication.");
-            e.printStackTrace();
+            logger.error("Error during authentication.", e);
             return null;
         } catch (Exception e) {
-            System.err.println("Error during decryption.");
-            e.printStackTrace();
+            logger.error("Error during decryption.", e);
             return null;
         }
     }
